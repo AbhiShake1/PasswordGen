@@ -24,19 +24,33 @@ def generate():
             charIndex = random.randint(0,len(charList))
             password.append(charList[charIndex])
 
-        #nums
-        for i in range(numNum):
-            charIndex = random.randint(0, numNum)
-            password.append(numList[charIndex])
+        if numNum>0:
+            #nums
+            for i in range(numNum):
+                charIndex = random.randint(0, len(numList))
+                password.append(numList[charIndex])
 
-        #symbols
-        for i in range(symbolNum):
-            charIndex = random.randint(0, symbolNum)
-            password.append(symbolList[charIndex])
+        if symbolNum>0:
+            #symbols
+            for i in range(symbolNum):
+                charIndex = random.randint(0, len(symbolList))
+                password.append(symbolList[charIndex])
 
         random.shuffle(password)  #randomize/shuffle the list elements
         #convert password list to string and concat
-        print("Your password is: " + ''.join(password))
+        password = ''.join(password)
+        print("Your password is: " + password)
+
+        store = input("Would you like to store the password?(Y/N)  ")
+        if (store.lower().__contains__("y")):
+            site = input("Enter the name of website or app that you want to use the password for: ")
+            try:
+                with open("passwords.txt", "a") as f:  #open in append mode
+                    f.write(site + ": " + password+"\n")
+                    print("added to passwords.txt successfully")
+            except:
+                print("Unable to write to file")
+                    
     
 if __name__ == "__main__":
     generate()
