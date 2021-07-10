@@ -20,21 +20,13 @@ def generate():
         password = []
 
         #chars
-        for i in range(totalNum - (numNum + symbolNum)):
-            charIndex = random.randint(0,len(charList))
-            password.append(charList[charIndex])
-
-        if numNum>0:
-            #nums
-            for i in range(numNum):
-                charIndex = random.randint(0, len(numList))
-                password.append(numList[charIndex])
-
-        if symbolNum>0:
-            #symbols
-            for i in range(symbolNum):
-                charIndex = random.randint(0, len(symbolList))
-                password.append(symbolList[charIndex])
+        [password.append(charList[random.randint(0, len(charList)-1)]) for i in range(totalNum - (numNum + symbolNum))]
+        
+        #numbers
+        [password.append(numList[random.randint(0, len(numList)-1)]) for i in range(numNum) if numNum > 0]
+        
+        #symbols
+        [password.append(symbolList[random.randint(0, len(symbolList)-1)]) for i in range(symbolNum) if symbolNum > 0]
 
         random.shuffle(password)  #randomize/shuffle the list elements
         #convert password list to string and concat
