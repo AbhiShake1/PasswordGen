@@ -23,10 +23,10 @@ def generate():
         [password.append(charList[random.randint(0, len(charList)-1)]) for i in range(totalNum - (numNum + symbolNum))]
         
         #numbers
-        [password.append(numList[random.randint(0, len(numList)-1)]) for i in range(numNum) if numNum > 0]
+        [password.append(numList[random.randint(0, len(numList)-1)]) for i in range(numNum)]
         
         #symbols
-        [password.append(symbolList[random.randint(0, len(symbolList)-1)]) for i in range(symbolNum) if symbolNum > 0]
+        [password.append(symbolList[random.randint(0, len(symbolList)-1)]) for i in range(symbolNum)]
 
         random.shuffle(password)  #randomize/shuffle the list elements
         #convert password list to string and concat
